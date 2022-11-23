@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+    before_save { email.downcase! }
     # vertual attributes for auth
     has_secure_password 
     # Email validation

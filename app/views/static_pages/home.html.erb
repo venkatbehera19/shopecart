@@ -1,4 +1,10 @@
 <% provide(:title, 'Home') %>
 <h1>Home Page</h1>
-
-<%= link_to "Sign up Now!", new_user_path %>
+<% if !log_in? %>
+    <%= link_to "Sign up Now!", new_user_path %>
+<% else %>
+    <%= link_to "Logout", logout_path, data: {
+        turbo_method: :delete,
+        turbo_confirm: "Are you sure"
+    } %>
+<% end %>
