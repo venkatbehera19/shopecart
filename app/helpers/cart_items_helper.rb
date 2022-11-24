@@ -1,0 +1,9 @@
+module CartItemsHelper
+    def cart_total_money(all_cart_items = [])
+        total_money = 0
+        all_cart_items.each do |all_cart_item|
+            total_money += all_cart_item[:product][:price] * all_cart_item[:item][:quantity]
+        end
+        total_money
+    end
+end
