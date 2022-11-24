@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+    has_one :cart, dependent: :destroy
     before_save { email.downcase! }
     # vertual attributes for auth
     has_secure_password 
