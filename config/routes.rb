@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   root "static_pages#home"
   resources :users ,     only: [:create, :new]
   resources :cart_items
+  resources :orders,     only: [:create]
 end

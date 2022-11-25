@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  total_amount: 1.5
+  invoice_number: MyString
+  order: one
+  product: one
+  product_name: MyString
+  product_description: MyString
+  product_price: 1.5
+
+two:
+  total_amount: 1.5
+  invoice_number: MyString
+  order: two
+  product: two
+  product_name: MyString
+  product_description: MyString
+  product_price: 1.5
