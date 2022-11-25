@@ -1,0 +1,12 @@
+<% provide(:title, 'Order Items') %>
+
+<h1>Order Items</h1>
+<%= link_to "Products", root_path %>
+
+<% @order_items.each do |order_item| %>
+    <div style="background-color:#d3d6ce; padding:30px; margin:20px;">
+        <p> Product Name - <%= order_item[:product_name] %> </p>
+        <p> Product Price - <%= order_item[:product_price] %> </p>
+        <p> Total Amount - <%= order_item[:total_amount] %> </p>
+    </div>
+<% end %>

@@ -3,6 +3,7 @@ class User < ApplicationRecord
     has_many :cart_items, through: :cart
     has_many :cart_products, through: :cart_items, source: :product
     has_many :orders, dependent: :destroy
+    has_many :order_items, through: :orders
     before_save { email.downcase! }
     # vertual attributes for auth
     has_secure_password 
