@@ -1,0 +1,13 @@
+{
+  "name": "shopecart",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/venkatbehera19/shopecart.git",
+  "author": "Venkat <venkatb@mindfiresolutions.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@popperjs/core": "2.9.2",
+    "bootstrap": "^5.2.3",
+    "jquery": "3.6"
+  }
+}

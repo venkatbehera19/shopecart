@@ -1,14 +1,20 @@
 <% provide(:title, 'Orders') %>
 
-<h1>All Orders</h1>
-<%= link_to "Products", root_path %>
-
-<% @orders.each do |order| %>
-    <div style="background-color:#d3d6ce; padding:30px; margin:20px;">
-        <p> Order Id - <%= order[:id] %> </p>
-        <p> Invoice Number - <%= order[:invoice_number] %> </p>
-        <p> Total Amount - <%= order[:total_amount] %> </p>
-        <p> Order created <%= time_ago_in_words(order[:created_at]) %> </p>
-        <%= link_to "View Details", order_order_items_path(order[:id]) %>
-    </div>
-<% end %>
+<h1 id="welcome">All Orders</h1>
+<div class="card-container">
+    <% @orders.each do |order| %>
+        <div class="card" style="width:100%"> 
+            <div class="card-header">
+                Order Id - <%= order[:id] %>
+            </div>
+            <div class="card-body">
+                <p> Invoice Number - <%= order[:invoice_number] %> </p>
+                <p> Total Amount - <%= order[:total_amount] %> </p>
+                <%= link_to "View Details", order_order_items_path(order[:id]), class: "btn btn-primary btn-sm" %>
+            </div>
+            <div class="card-footer text-muted">
+                <p><%= time_ago_in_words(order[:created_at]) %> ago </p>
+            </div>
+        </div>
+    <% end %>
+</div>

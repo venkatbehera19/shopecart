@@ -1,0 +1,24 @@
+<tr id="item<%=all_cart_item.id%>">
+    <td><%= all_cart_item.product.name %></td>
+    <td><%= all_cart_item.product.price %></td>
+    <td><%= all_cart_item["quantity"] %></td>
+    <td>
+        <%= button_to "Add more", cart_item_url(all_cart_item["id"]),class: "btn btn-primary", method: :patch, params: {
+            product_id: all_cart_item["product_id"],
+            cart_id: all_cart_item["cart_id"],
+            quantity: all_cart_item["quantity"] + 1
+        } , remote: true  %>
+    </td>
+    <td>
+        <%= button_to "Remove", cart_item_url(all_cart_item["id"]),class: "btn btn-primary", method: :patch, params: {
+                product_id: all_cart_item["product_id"],
+                cart_id: all_cart_item["cart_id"],
+                quantity: all_cart_item["quantity"] - 1
+        }, remote: true, :disabled => all_cart_item["quantity"] - 1 == 0 %>
+    </td>
+    <td>
+        <%= button_to "Delete", cart_item_url(all_cart_item["id"]), method: :delete,class: "btn btn-danger",
+                                    id: 'delete_btn', remote: true %>
+    </td>
+</tr>
+

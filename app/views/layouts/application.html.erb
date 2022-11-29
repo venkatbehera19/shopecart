@@ -11,9 +11,29 @@
   </head>
 
   <body>
-    <% flash.each do | message_type, message | %>
-      <div><%= message %></div>
-    <% end %>
-    <%= yield %>
+     <header>
+      <ul>
+        <li><%= link_to "Home", root_path %></li>
+        <li><%= link_to "All Products", product_index_path %></li>
+        <li><%= link_to "Cart", cart_items_path %></li>
+        <li><%= link_to "Orders", orders_path %></li>
+        <li style="float:right">
+          <% if !log_in? %>
+            <%= link_to "Sign up Now!", new_user_path %>
+          <% else %>
+            <%= link_to "Logout", logout_path, data: {
+                turbo_method: :delete,
+                turbo_confirm: "Are you sure"
+            } %>
+          <% end %>
+        </li>
+      </ul>
+     </header> 
+    <div id="flash">
+      <%= render '/layouts/flash' %>
+    </div>
+    <div class="container">
+      <%= yield %>
+    </div>
   </body>
 </html>

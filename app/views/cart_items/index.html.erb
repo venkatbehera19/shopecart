@@ -1,25 +1,41 @@
 <% provide(:title, 'Cart Item') %>
-<h1>Cart Items Page</h1>
-<%= link_to "Products", root_path %>
-<% @all_cart_items.each do |all_cart_item| %>
-    <div>
-        <h3>Name - <%= all_cart_item["product_name"] %> </h3>
-        <p> Price - <%= all_cart_item["product_price"] %>rs </p>
-        <p> Quantity -  <%= all_cart_item["quantity"] %>  </p>
-        <%= button_to "Add more", cart_item_url(all_cart_item["id"]), method: :patch, params: {
-            product_id: all_cart_item["product_id"],
-            cart_id: all_cart_item["cart_id"],
-            quantity: all_cart_item["quantity"] + 1
-        }   %>
-        <%= button_to "Remove", cart_item_url(all_cart_item["id"]), method: :patch, params: {
-            product_id: all_cart_item["product_id"],
-            cart_id: all_cart_item["cart_id"],
-            quantity: all_cart_item["quantity"] - 1
-        } %> 
-        <%= button_to "Delete", cart_item_url(all_cart_item["id"]), method: :delete %>
-    <div>
-<% end %>
+<h1 id="welcome">Cart Items</h1>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <% if @cart_items.length == 0 %>
+                <h2 id="welcome">Cart is Empty</h2>
+            <% else %>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th colspan="3">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% @cart_items.each do |all_cart_item| %>
+                            <%= render 'cart_items/items', all_cart_item: all_cart_item %>
+                        <% end %>
+                    </tbody>
+                </table>
+            <%end %>
+        </div>
+        <div class="col">
+            <% if @cart_items.length != 0 %>
+                <div class="mt-2">
+                    <%= render 'total', cart_items: @cart_items %>
+                    <%= button_to "Checkout", orders_path ,class: "btn btn-primary btn-lg w-100" %>
+                </div>
+            <%end %>
+        </div>
+    </div>
+</div>
 
-<h2>All Total <%= cart_total_money(@all_cart_items)  %> </h2>
 
-<%= button_to "Checkout", orders_path %>
+
+
+
+

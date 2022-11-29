@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-
+    before_action :logged_in_user
     def index 
         @orders = current_user.orders
     end
@@ -50,5 +50,13 @@ class OrdersController < ApplicationController
                 total_money += all_cart_item["product_price"] * all_cart_item["quantity"]
             end
             total_money
+        end
+
+        def logged_in_user 
+            puts "Called"
+            unless log_in?
+                flash[:danger] = "please log in"
+                redirect_to login_url
+            end
         end
 end
