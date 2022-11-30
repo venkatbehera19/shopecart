@@ -1,3 +1,8 @@
-<% flash.each do | message_type, message | %>
-    <div class="alert alert-<%= message_type %>"><%= message %></div>
-<% end %>
+<div>
+    <% flash.each do | message_type, message | %>
+        <div class="d-flex justify-content-between alert alert-<%= message_type %>">
+            <p id="message"><%= message %></p>
+            <button type="button" class="btn-close" aria-label="Close" id="btn-close"></button>
+        </div>
+    <% end %>
+</div>

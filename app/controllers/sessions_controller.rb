@@ -9,9 +9,11 @@ class SessionsController < ApplicationController
     user = User.find_by(email: email.downcase)
     respond_to do |format|
       if user&.authenticate(password)
+        format.js 
         log_in user
         format.html { redirect_to root_path, :flash => { :success => "Login Successfull." } }
       else
+        format.js
         format.html { redirect_to login_path, :flash => { :danger => "Invalid email/password." } }
       end
     end

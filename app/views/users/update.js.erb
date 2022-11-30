@@ -1,0 +1,7 @@
+<% if @user.errors.any? %>
+    alert('Something Went Wrong')
+<% else %>
+    $('#update_table').replaceWith("<%=escape_javascript render('profile_details', user: @user) %>")
+    $('#profile_name').replaceWith("<%=escape_javascript render('profile_name', user: @user) %>")
+    $('#close_btn').click()
+<% end %>

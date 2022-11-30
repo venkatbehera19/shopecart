@@ -1,0 +1,61 @@
+<div class="container" style="margin-top: 21px">
+    <div class="row">
+        <div class="col-4">
+            <div class="card">
+                <div class="card-body">
+                    <%= image_tag "profile.jpg", :style => "max-width:100%; max-height:100%" %>
+                    <div class="d-flex justify-content-around">
+                        <%= render 'profile_name', user: @user%>
+                        <%= link_to "Edit",edit_user_path(current_user), :style => "margin-top: 13px", data: {
+                            bs_toggle: 'modal', bs_target: "#editUserModal", remote: true
+                        } %>
+                    </div>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+                    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
+                    when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
+                    It has survived not only five centuries, but also the leap into electronic typesetting,
+                    remaining essentially unchanged.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-8">
+            <h1>Profile Details</h1>
+            <%= render 'users/profile_details',user: @user %>
+            <h1>All Orders</h1>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Order Id</th>
+                        <th>Invoice Number</th>
+                        <th>Total Amount</th>
+                        <th>View</th>
+                    </tr>
+                <thead>
+                <tbody>
+                    <% @orders.each do |order| %>
+                        <tr>
+                            <td><%= order[:id] %></td>
+                            <td><%= order[:invoice_number] %></td>
+                            <td><%= order[:total_amount] %></td>
+                            <td><%= link_to "View Details", order_order_items_path(order[:id]), class: "btn btn-primary btn-sm" %></td>
+                        </tr>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="editUserModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="editUserModalLabel">Update User Details</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div id="editUserForm">
+      </div>
+    </div>
+  </div>
+</div>

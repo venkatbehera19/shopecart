@@ -6,9 +6,8 @@ Rails.application.routes.draw do
   get 'static_pages/home'
   
   root "static_pages#home"
-  resources :users ,     only: [:create, :new]
+  resources :users 
   resources :cart_items
-  # resources :products ,  only: [:index]
   resources :orders do 
     resources :order_items 
   end

@@ -17,4 +17,8 @@ module SessionsHelper
         session.delete(:user_id);
         @current_user = nil
     end
+
+    def total_cart_items
+        total_items_length = current_user ? current_user.cart_items.length : 0
+    end
 end

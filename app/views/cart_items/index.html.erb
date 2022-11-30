@@ -27,7 +27,7 @@
             <% if @cart_items.length != 0 %>
                 <div class="mt-2">
                     <%= render 'total', cart_items: @cart_items %>
-                    <%= button_to "Checkout", orders_path ,class: "btn btn-primary btn-lg w-100" %>
+                    <%= render 'checkout_btn', orders_path: orders_path, total_cart_items: total_cart_items %>
                 </div>
             <%end %>
         </div>

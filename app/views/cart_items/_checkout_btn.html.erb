@@ -1,0 +1,3 @@
+<div id="checkout_btn">
+    <%= button_to "Checkout", orders_path ,class: "btn btn-primary btn-sm w-100", :disabled => total_cart_items == 0 %>
+</div>

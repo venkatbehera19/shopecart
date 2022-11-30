@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-
+    before_action :logged_in_user
     def new 
         @user = User.new
     end
@@ -20,9 +20,38 @@ class UsersController < ApplicationController
         end
     end
 
+    def show 
+        @user = current_user
+        @orders = current_user.orders
+    end
+
+    def edit 
+        @user = User.find(params[:id])
+    end
+
+    def update 
+        @user = User.find(params[:id])
+        respond_to do |format|
+            if @user.update(user_params)
+                format.html { redirect_to user_url(@user), :flash => { :success => "Profile Updated Successfully."}}
+                format.js
+            else
+                format.js
+                format.html { render :edit, status: :unprocessable_entity}
+            end
+        end
+    end
+
     private 
         def user_params 
             # strong parameters
             params.require(:user).permit(:email, :name, :phone, :password, :password_confirmation)
+        end
+
+        def logged_in_user 
+            unless log_in?
+                flash[:danger] = "please log in"
+                redirect_to login_url
+            end
         end
 end
