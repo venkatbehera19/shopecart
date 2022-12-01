@@ -10,20 +10,18 @@ class CartItemsController < ApplicationController
         @new_cart_item = current_user.cart.cart_items.build(product_id: params[:product], quantity:1)
         respond_to do |format|
             format.turbo_stream do 
+                # binding.break
                 if @check_item.nil?
                     if @new_cart_item.save
-                        flash[:success] = "Item added in the cart."
-                        # redirect_to root_path
-                        render turbo_stream: [turbo_stream.update('flash', partial: 'layouts/flash', locals: { flash: flash }),
-                                              turbo_stream.update('cart', partial: '/layouts/cart', locals: { count: total_cart_items})]                    else  
-                    
-                        # redirect_to root_path
-                        # flash[:danger] = "Something went wrong."
+                        flash.now[:success] = "Item added in the cart."
+                        render turbo_stream: [
+                                              turbo_stream.update('flash', partial: 'layouts/flash', locals: { flash: flash }),
+                                              turbo_stream.update('cart', partial: '/layouts/cart', locals: { count: total_cart_items})
+                                              ]                      
                     end
                 else
-                    # redirect_to root_path
-                    flash[:info] = "Item is already present in the cart. please go to Cart!."
-                    render turbo_stream: turbo_stream.update('flash', partial: 'layouts/flash', locals: { flash: flash })
+                    flash.now[:danger] = "Item is already present in the cart. please go to Cart!."
+                    render turbo_stream: [ turbo_stream.update('flash', partial: 'layouts/flash', locals: { flash: flash }) ]
                 end
             end
         end
@@ -36,10 +34,6 @@ class CartItemsController < ApplicationController
         @cart_items = current_user.cart_items.order(:created_at)
         respond_to do |format|
             if cart
-                # flash[:success] = "Item updated in the cart."
-                # redirect_to cart_items_path
-                # render turbo_stream: turbo_stream.update('flash', partial: 'layouts/flash', locals: { flash: flash })
-                # render turbo_stream: turbo_stream.update('cart_items', partial: 'cart_items/items')
                 format.js
             end
         end
@@ -51,16 +45,12 @@ class CartItemsController < ApplicationController
         respond_to do |format|
             if @check_item.destroy
                 format.html { redirect_to cart_items_path, :flash => { :success => "Item removed from the cart." } }
-                # flash[:success] = "Item removed from the cart."
-                # render turbo_stream: turbo_stream.update('flash', partial: 'layouts/flash', locals: { flash: flash })
-                # redirect_to cart_items_path
                 format.js
             end
         end
     end
 
     def checkout 
-        puts "Calling Checkout -- #{params}"
     end
 
     private 

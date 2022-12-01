@@ -10,9 +10,3 @@ window.importmapScriptsLoaded = true;
 $(function(){
     console.log('JQuery is Working')
 })
-
-$(document).ready(function(){
-    $('#flash').click(function(){
-        this.remove()
-    })
-})

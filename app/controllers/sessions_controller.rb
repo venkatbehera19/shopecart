@@ -1,20 +1,20 @@
 class SessionsController < ApplicationController
-
   def new
   end
 
   def create
     email = params[:session][:email]
     password = params[:session][:password]
-    user = User.find_by(email: email.downcase)
+    @user = User.find_by(email: email.downcase)
     respond_to do |format|
-      if user&.authenticate(password)
+      if @user&.authenticate(password)
         format.js 
-        log_in user
+        log_in @user
         format.html { redirect_to root_path, :flash => { :success => "Login Successfull." } }
       else
+        # binding.break
         format.js
-        format.html { redirect_to login_path, :flash => { :danger => "Invalid email/password." } }
+        format.html { redirect_to login_path, :flash => { :danger => "Invalid Username & Password. " }}
       end
     end
   end

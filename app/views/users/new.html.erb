@@ -1,41 +1,31 @@
 <% provide(:title, 'Sign In') %>
 <div class="container">
-    <h1>Sign In</h1>
+    <h1>Sign Up</h1>
     <%= form_with(model: @user, local:true) do |form| %>
         <div> 
             <%= form.label :name, class: "form-label" %> 
             <%= form.text_field :name, class: "form-control" %>
-            <% @user.errors.full_messages_for(:name).each do |message| %>
-                <p class="error_message"><%= message %></p>
-            <% end %>
+            <p class="error_message"><%= @user.errors.full_messages_for(:name).join(', ') %></p>
         </div>
         <div> 
             <%= form.label :email, class: "form-label" %> 
             <%= form.email_field :email, class: "form-control" %>
-            <% @user.errors.full_messages_for(:email).each do |message| %>
-                 <p class="error_message"><%= message %></p>
-            <% end %>
+            <p class="error_message"><%= @user.errors.full_messages_for(:email).join(', ') %></p>
         </div>
         <div> 
             <%= form.label :phone, class: "form-label" %> 
             <%= form.text_field :phone, class: "form-control" %>
-            <% @user.errors.full_messages_for(:phone).each do |message| %>
-                 <p class="error_message"><%= message %></p>
-            <% end %>
+            <p class="error_message"><%= @user.errors.full_messages_for(:phone).join(', ') %></p>
         </div>
         <div> 
             <%= form.label :password, class: "form-label" %> 
             <%= form.password_field :password, class: "form-control" %>
-            <% @user.errors.full_messages_for(:password).each do |message| %>
-                 <p class="error_message"><%= message %></p>
-            <% end %>
+           <p class="error_message"><%= @user.errors.full_messages_for(:password).join(', ') %></p>
         </div>
         <div> 
             <%= form.label :password_confirmation, "Confirmation", class: "form-label" %> 
             <%= form.password_field :password_confirmation, class: "form-control" %>
-            <% @user.errors.full_messages_for(:password_confirmation).each do |message| %>
-                 <p class="error_message"><%= message %></p>
-            <% end %>
+           <p class="error_message"><%= @user.errors.full_messages_for(:password_confirmation).join(', ') %></p>
         </div>
         <div>
             <%= form.submit class:'btn btn-primary mt-3' %>
