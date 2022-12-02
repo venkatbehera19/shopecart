@@ -10,6 +10,16 @@ class SessionsController < ApplicationController
       if @user&.authenticate(password)
         format.js 
         log_in @user
+        if is_cart_sessions?
+          user_cart = @user.cart.cart_items
+          cart_sessions.each do |item|
+            if is_session_cart_present_in_user_cart(user_cart, item) == nil 
+              @user.cart.cart_items.create(product_id: item["id"], quantity:1)
+            end
+          end
+          # cart_sessions.
+        end
+        cart_sessions_clear
         format.html { redirect_to root_path, :flash => { :success => "Login Successfull." } }
       else
         # binding.break

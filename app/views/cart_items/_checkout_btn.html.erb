@@ -1,3 +1,7 @@
 <div id="checkout_btn">
+<% if log_in? %>
     <%= button_to "Checkout", orders_path ,class: "btn btn-primary btn-sm w-100", :disabled => total_cart_items == 0 %>
+<% else %>
+    <%= button_to "Checkout", orders_path ,class: "btn btn-primary btn-sm w-100", :disabled => cart_sessions.length == 0 %>
+<% end %>
 </div>
