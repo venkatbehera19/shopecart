@@ -1,10 +1,9 @@
 <% provide(:title, 'All Products') %>
-<div class="container d-flex align-items-center mt-3 mb-3">
+<div class="container d-flex align-items-center mt-3 mb-3 justify-content-between">
     <h1>Products</h1>
-    <%= form_with(url: products_path, method: :get, data: {turbo_frame: "products", turbo_action: "advance"}) do |form| %>
-        <div class="d-flex">
-            <%= form.text_field :query %>
-            <%= form.submit 'Search' %>
+    <%= form_with(url: products_path, method: :get, data: { controller: "search-form", turbo_frame: "products", turbo_action: "advance"}) do |form| %>
+        <div class="input-group rounded">
+            <%= form.text_field :query, data: { action: "input->search-form#search"}, class: "form-control rounded", placeholder: "Search" %>
         </div>
     <% end %>
 </div>

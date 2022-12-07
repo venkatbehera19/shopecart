@@ -21,4 +21,5 @@ Things you may want to cover:
 
 * Deployment instructions
 
-* ...
+* Real Time - stimulus 1 -> rails g stimulus search-form
+* Real Time - stimulus 2 -> rails  stimulus:manifest:update
