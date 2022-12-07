@@ -1,12 +1,7 @@
 class CartItemsController < ApplicationController
-    # before_action :logged_in_user
-
     def index 
         if log_in?
             @cart_items = current_user.cart_items.order(:created_at)
-        else
-            # redirect_to login_url
-            # @products = Product.all
         end
     end
 
@@ -16,7 +11,6 @@ class CartItemsController < ApplicationController
             @new_cart_item = current_user.cart.cart_items.build(product_id: params[:product], quantity:1)
             respond_to do |format|
                 format.turbo_stream do 
-                    # binding.break
                     if @check_item.nil?
                         if @new_cart_item.save
                             flash.now[:success] = "Item added in the cart."
@@ -41,7 +35,6 @@ class CartItemsController < ApplicationController
                     ]
                 end
             end
-            # redirect_to login_url
         end
     end
 

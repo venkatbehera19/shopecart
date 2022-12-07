@@ -1,8 +1,28 @@
 <% provide(:title, 'Home') %>
 
-<div class="d-flex justify-content-center bg-info bg-opacity-25" 
-    style="padding:200px; margin-top:10px; margin-bottom:10px">
-    <h1 id="welcome">Welcome to ShopeKart</h1>
+<div class="d-flex justify-content-center bg-info bg-opacity-25 carousel slide" 
+    data-bs-ride="carousel"
+    id = "carouselitem"
+    style="margin-top:10px; margin-bottom:10px">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <%= image_tag "carousel1.jpg", class: "d-block w-100" %>
+        </div>
+        <div class="carousel-item">
+            <%= image_tag "carousel2.jpg", class: "d-block w-100" %>
+        </div>
+        <div class="carousel-item">
+            <%= image_tag "carousel3.jpg", class: "d-block w-100" %>
+        </div>
+    </div>
+     <button class="carousel-control-prev" type="button" data-bs-target="#carouselitem" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselitem" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
 </div>
 
 <div class="card-container">

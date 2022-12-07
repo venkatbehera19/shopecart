@@ -1,0 +1,14 @@
+<div id="<%= dom_id product %>" class="card">
+  <div class="card-body">
+    <h1><%= product.name %></h1>
+    <p class="price"><%= product.price %> Rs</p>
+    <p><%= product.description %></p>
+  </div>
+  <div class="card-footer text-muted">
+      <%= button_to "Add +", cart_items_path, 
+                  params: {  product: product, 
+                             name: product.name, 
+                             description: product.description 
+                          } %>
+  </div>
+  </div>

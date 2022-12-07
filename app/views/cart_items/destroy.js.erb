@@ -1,4 +1,3 @@
-console.log('Destroy')
 $('#item<%= @check_item.id %>').remove()
 $('#total_money').replaceWith("<%= escape_javascript render('total', cart_items: @cart_items) %>")
 $('#cart').replaceWith("<%= escape_javascript render('/layouts/cart', count: total_cart_items) %>")

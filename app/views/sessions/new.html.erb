@@ -9,14 +9,17 @@
       <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
         <%= form_with(url: login_path, scope: :session, local:true) do |form| %>
           <h1>Log IN</h1>
+          
           <div class="form-outline mb-4">
             <%= form.label :email, class: "form-label" %>
             <%= form.text_field :email, class: "form-control form-control-lg", placeholder: "Enter a valid email address"  %>
+            <%= render "error_inline_email", error_message: "" %>
           </div>
 
           <div class="form-outline mb-4">   
                 <%= form.label :password, class: "form-label" %>
                 <%= form.password_field :password, class: "form-control form-control-lg", placeholder: "Enter password" %>
+                <%= render "error_inline_password", error_message: "" %>
           </div>
 
           <div class="text-center text-lg-start mt-4 pt-2">

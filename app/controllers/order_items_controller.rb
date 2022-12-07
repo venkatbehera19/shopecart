@@ -7,7 +7,6 @@ class OrderItemsController < ApplicationController
     
     private 
         def logged_in_user 
-            puts "Called"
             unless log_in?
                 flash[:danger] = "please log in"
                 redirect_to login_url

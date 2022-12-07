@@ -1,3 +1,2 @@
-console.log('Update.js.erb')
 $('#item<%= @cart_item.id %>').replaceWith("<%= escape_javascript render('items', all_cart_item: @cart_item) %>")
 $('#total_money').replaceWith("<%= escape_javascript render('total', cart_items: @cart_items) %>")

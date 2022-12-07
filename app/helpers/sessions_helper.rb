@@ -57,7 +57,6 @@ module SessionsHelper
                 ele_sessions << data;
                 session[:cart] = ele_sessions;
             end
-            # session.delete(:cart);
         end
     end
 
