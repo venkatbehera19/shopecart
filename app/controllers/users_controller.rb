@@ -24,6 +24,7 @@ class UsersController < ApplicationController
     def show 
         @user = current_user
         @orders = current_user.orders
+        @my_products = current_user.products
     end
 
     def edit 

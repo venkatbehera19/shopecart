@@ -42,6 +42,27 @@
                     <% end %>
                 </tbody>
             </table>
+            <h1>My Products</h1>
+            <%= link_to "add product",new_product_path, :style => "margin-top: 13px", data: {
+                            bs_toggle: 'modal', bs_target: "#addProductModal", remote: true
+                        } %>
+            <% if @my_products.length > 0 %>
+              <table class="table">
+                  <thead>
+                      <tr>
+                          <th>Product Id</th>
+                          <th>Name</th>
+                          <th>Price</th>
+                          <th>Description</th>
+                      </tr>
+                  <thead>
+                  <tbody id="products_table">
+                      <% @my_products.each do |product| %>
+                          <%= render 'user_product', product: product %>
+                      <% end %>
+                  </tbody>
+              </table>
+            <% end %>
         </div>
     </div>
 </div>
@@ -55,6 +76,19 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div id="editUserForm">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="addProductModalLabel">Add Product</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div id="addProductForm">
       </div>
     </div>
   </div>

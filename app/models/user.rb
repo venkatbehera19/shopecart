@@ -1,9 +1,10 @@
 class User < ApplicationRecord
-    has_one :cart, dependent:    :destroy
+    has_one  :cart, dependent:    :destroy
     has_many :cart_items, through: :cart
     has_many :cart_products, through: :cart_items, source: :product
     has_many :orders, dependent: :destroy
     has_many :order_items, through: :orders
+    has_many :products
 
     before_save { email.downcase! }
     VALID_EMAIL_REGEX = /\A[^@][\w.-]+@[\w.-]+[.][a-z]{2,4}\z/i
