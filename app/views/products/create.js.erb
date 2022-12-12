@@ -2,4 +2,5 @@
     alert('Something Went Wrong')
 <% else %>
     $('#close_btn').click()
+    $('#products_table').prepend("<%= escape_javascript render('user_product', product: @product) %>")
 <% end %>
