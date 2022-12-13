@@ -14,7 +14,7 @@
         </div>
         <div>
             <%= form.label :category %>
-            <%= form.select :category_id, options_for_select(@categories.collect {|cat| [cat.name, cat.id]} ), class: "form-select" %>
+            <%= form.select :category_id, options_for_select(@categories.collect {|cat| [cat.name, cat.id]} ), {}, class: "form-select" %>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="close_btn">Close</button>
