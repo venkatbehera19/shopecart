@@ -32,12 +32,18 @@
                     </tr>
                 <thead>
                 <tbody>
-                    <% @orders.each do |order| %>
+                    <% if @orders.length > 0 %>
+                        <% @orders.each do |order| %>
+                            <tr>
+                                <td><%= order[:id] %></td>
+                                <td><%= order[:invoice_number] %></td>
+                                <td><%= order[:total_amount] %></td>
+                                <td><%= link_to "View Details", order_order_items_path(order[:id]), class: "btn btn-primary btn-sm" %></td>
+                            </tr>
+                        <% end %>
+                    <% else %>
                         <tr>
-                            <td><%= order[:id] %></td>
-                            <td><%= order[:invoice_number] %></td>
-                            <td><%= order[:total_amount] %></td>
-                            <td><%= link_to "View Details", order_order_items_path(order[:id]), class: "btn btn-primary btn-sm" %></td>
+                            <td colspan="4" style="text-align:center">No Orders Yet</td>
                         </tr>
                     <% end %>
                 </tbody>
@@ -46,11 +52,9 @@
             <%= link_to "add product",new_product_path, :style => "margin-top: 13px", data: {
                             bs_toggle: 'modal', bs_target: "#addProductModal", remote: true
                         } %>
-            <% if @my_products.length > 0 %>
               <table class="table">
                   <thead>
                       <tr>
-                          <th>Product Id</th>
                           <th>Name</th>
                           <th>Price</th>
                           <th>Description</th>
@@ -58,13 +62,20 @@
                           <th colspan="2">Action</th>
                       </tr>
                   <thead>
-                  <tbody id="products_table">
-                      <% @my_products.each do |product| %>
-                          <%= render 'user_product', product: product %>
-                      <% end %>
-                  </tbody>
+                    <% if @my_products.length > 0 %>
+                        <tbody id="products_table">
+                            <% @my_products.each do |product| %>
+                                <%= render 'user_product', product: product %>
+                            <% end %>
+                        </tbody>
+                    <% else %>
+                        <tbody id="products_table">
+                            <tr>
+                                <td colspan="4" style="text-align:center">No Products Added Yet. Please add product</td>
+                            </tr>
+                        </tbody>
+                    <% end %>
               </table>
-            <% end %>
         </div>
     </div>
 </div>

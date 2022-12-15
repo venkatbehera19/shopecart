@@ -7,7 +7,6 @@ class ProductsController < ApplicationController
       @products = Product.where("name LIKE :query", query: "%#{params[:query]}%")
     else 
       if !params[:category_id].nil? 
-        puts "tracked #{params[:category_id]}";
         @products = Category.find_by(id: params[:category_id]).products;
         if @products.length == 0
           @products = Product.all

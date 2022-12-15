@@ -14,7 +14,6 @@
         </div>
         <div>
             <%= form.label :category %>
-            <%# <%= form.select :categories_id, options_for_select(@categories.collect {|cat| [cat.name, cat.id]}), :multiple => true %> %>
             <%= form.select(:categories_ids, @categories.collect {|cat| [ cat.name, cat.id ]}, {:prompt => "Please select"}, { :multiple => true, :size => 5 } ) %>
         </div>
         <div class="modal-footer">
