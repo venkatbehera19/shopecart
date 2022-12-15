@@ -1,8 +1,8 @@
 class Product < ApplicationRecord
-    validates  :category_id, presence:true
     has_many   :cart_items
     has_many   :orders
     has_many   :order_items
     belongs_to :user
-    belongs_to :category
+    has_many   :product_categories
+    has_many   :categories ,through: :product_categories
 end

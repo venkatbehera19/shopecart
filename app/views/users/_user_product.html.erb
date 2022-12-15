@@ -3,6 +3,6 @@
     <td><%= product[:name] %></td>
     <td><%= product[:price] %></td>
     <td><%= product[:description] %></td>
-    <td><%= product.category.name %></td>
+    <td><%= all_category_name(product.categories) %>
     <td><%= button_to "Delete", product, method: :delete, remote: true %></td>
 </tr>

@@ -23,7 +23,12 @@ class ProductsController < ApplicationController
   end
 
   def create
-    @product = current_user.products.create(product_params);
+    @product = current_user.products.create(name: product_params[:name], description: product_params[:description], price: product_params[:price]);
+    product_params[:categories_ids].each do |category_id|
+      if category_id != ""
+        ProductCategory.create(product_id: @product.id, category_id: category_id )
+      end
+    end
     respond_to do |format|
       if @product 
         format.js;
@@ -44,7 +49,7 @@ class ProductsController < ApplicationController
 
   private 
     def product_params 
-      params.require(:product).permit(:name, :description, :price, :category_id)
+      params.require(:product).permit(:name, :description, :price, categories_ids: [])
     end
   
     def set_categories 
