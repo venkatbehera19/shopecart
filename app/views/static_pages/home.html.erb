@@ -34,7 +34,7 @@
                 <p><%= product.description %></p>
             </div>
             <div class="card-footer text-muted">
-                    <%= button_to "Add +", cart_items_path, 
+                    <%= button_to "Add To Cart", cart_items_path, 
                         params: {  product: product, 
                                 name: product.name, 
                                 description: product.description 
