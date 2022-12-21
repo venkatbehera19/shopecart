@@ -1,0 +1,19 @@
+<% provide(:title, 'All User') %>
+
+<h1 id="welcome">All Users</h1>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Role</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @users.each do |user| %>
+            <%= render 'user_details', user: user %>
+        <% end %>
+    </tbody>
+</table>

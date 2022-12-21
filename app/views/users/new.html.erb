@@ -34,6 +34,10 @@
                         <%= form.password_field :password_confirmation, class: "form-control" %>
                         <p class="error_message"><%= @user.errors.full_messages_for(:password_confirmation).join(', ') %></p>
                     </div>
+                    <div class="form-outline mb-2">
+                        <%= form.label "Are You A Seller?" %>
+                        <%= form.check_box :role_id, { checked: false }, 3, 1 %>
+                    </div>
                     <div class="text-center text-lg-start mt-4 pt-2">
                         <%= form.submit class:'btn btn-primary mt-3 btn-lg' , style: "padding-left: 2.5rem; padding-right: 2.5rem;"%>
                         <p class="small fw-bold mt-2 pt-1 mb-0">Already a User<%= link_to "Log In", login_path %></p>

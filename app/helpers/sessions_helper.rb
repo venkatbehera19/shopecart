@@ -75,4 +75,17 @@ module SessionsHelper
             end
         end
     end
+
+    def is_admin? 
+        if current_user
+            current_user.role_id == 2 ? true : false
+        else 
+            return false
+        end
+    end
+
+    def role(role_id) 
+        name = Role.find_by(id: role_id);
+        return name.name
+    end
 end

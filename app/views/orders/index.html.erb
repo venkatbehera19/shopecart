@@ -1,20 +1,46 @@
 <% provide(:title, 'Orders') %>
 
 <h1 id="welcome">All Orders</h1>
-<div class="card-container">
-    <% @orders.each do |order| %>
-        <div class="card" style="width:100%"> 
-            <div class="card-header">
-                Order Id - <%= order[:id] %>
+<% if !is_admin? %>
+    <div class="card-container">
+        <% @orders.each do |order| %>
+            <div class="card" style="width:100%"> 
+                <div class="card-header">
+                    Order Id - <%= order[:id] %>
+                </div>
+                <div class="card-body">
+                    <p> Invoice Number - <%= order[:invoice_number] %> </p>
+                    <p> Total Amount - <%= order[:total_amount] %> </p>
+                    <%= link_to "View Details", order_order_items_path(order[:id]), 
+                        class: "btn btn-primary btn-sm" %>
+                </div>
+                <div class="card-footer text-muted">
+                    <p><%= time_ago_in_words(order[:created_at]) %> ago </p>
+                </div>
             </div>
-            <div class="card-body">
-                <p> Invoice Number - <%= order[:invoice_number] %> </p>
-                <p> Total Amount - <%= order[:total_amount] %> </p>
-                <%= link_to "View Details", order_order_items_path(order[:id]), class: "btn btn-primary btn-sm" %>
-            </div>
-            <div class="card-footer text-muted">
-                <p><%= time_ago_in_words(order[:created_at]) %> ago </p>
-            </div>
-        </div>
-    <% end %>
-</div>
+        <% end %>
+    </div>
+<% else %>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Order Id</th>
+                <th>Invoice Number</th>
+                <th>Total Amount</th>
+                <th>When</th>
+                <th>Order By</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @orders.each do |order| %>
+                <tr>
+                    <td><%= order[:id] %></td>
+                    <td><%= order[:invoice_number] %></td>
+                    <td><%= order[:total_amount] %></td>
+                    <td><%= time_ago_in_words(order[:created_at]) %></td>
+                    <td> <%= order.user.name %> </td>
+                </tr>
+            <% end %>
+        </tbody>
+    </table>
+<% end %>

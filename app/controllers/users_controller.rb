@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
     before_action :logged_in_user, except: [:new, :create]
 
+    def index 
+        @users = User.all
+    end
+
     def new 
         @user = User.new
     end
@@ -44,9 +48,18 @@ class UsersController < ApplicationController
         end
     end
 
+    def destroy 
+        @user = User.find_by(id: params[:id]);
+        respond_to do |format|
+            if @user.destroy 
+                format.js
+            end
+        end
+    end
+
     private 
         def user_params 
-            params.require(:user).permit(:email, :name, :phone, :password, :password_confirmation)
+            params.require(:user).permit(:email, :name, :phone, :password, :password_confirmation, :role_id)
         end
 
         def logged_in_user 

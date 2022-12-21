@@ -10,5 +10,8 @@
                              name: product.name, 
                              description: product.description 
                           } %>
+      <% if is_admin? %>
+        <%= link_to "Delete", product, method: :delete, remote: true, class: 'btn btn-danger' %>
+      <% end %>
   </div>
-  </div>
+</div>

@@ -1,0 +1,20 @@
+<tr id="roleRow_<%= role.id %>">
+    <td><%= role.id %></td>
+    <td><%= role.name %></td>
+    <td>
+        <div class="dropdown">
+            <button 
+                class="btn btn-secondary dropdown-toggle" 
+                type="button" 
+                id="dropdownMenuButton1" 
+                data-bs-toggle="dropdown" 
+                aria-expanded="false">
+                  Action
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li>Edit</li>
+                <li>Delete</li>
+            </ul>
+        </div>
+    </td>
+</tr>

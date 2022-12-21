@@ -1,0 +1,10 @@
+<tr id="categoryRow_<%= category.id %>">
+    <td><%= category.id %></td>
+    <td><%= category.name %></td>
+    <td>
+        <%= link_to "Edit", edit_category_path(category), class: 'btn btn-primary', data: {
+            bs_toggle: 'modal', bs_target: '#editCategoryModal', remote: true
+        }%>
+        <%= link_to "Delete", category, method: :delete, remote: true, class: 'btn btn-danger'%>
+    </td>
+</tr>
