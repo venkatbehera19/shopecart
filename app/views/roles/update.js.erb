@@ -1,0 +1,6 @@
+<% if @role.errors.any? %>
+    alert('Something Went Wrong');
+<% else %>
+    $('#roleRow_<%= @role.id %>').replaceWith("<%= escape_javascript render('role_row', role: @role) %>")
+    $('.btn-close').click()
+<% end %>

@@ -1,0 +1,6 @@
+<% if @role.errors.any? %>
+    alert('something went wrong')
+<% else %>
+    $('#roleTable').append("<%= escape_javascript render('role_row', role: @role) %>")
+    $('.btn-close').click()
+<% end %>

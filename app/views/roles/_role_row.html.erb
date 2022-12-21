@@ -12,8 +12,14 @@
                   Action
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <li>Edit</li>
-                <li>Delete</li>
+                <li>
+                    <%= link_to "Edit", edit_role_path(role), class: "dropdown-item", data: {
+                        bs_toggle: 'modal', bs_target: '#editRoleModal', remote: true
+                    } %>
+                </li>
+                <li>
+                    <%= link_to "Delete", role, method: :delete, remote: true, class: "dropdown-item"%>
+                </li>
             </ul>
         </div>
     </td>

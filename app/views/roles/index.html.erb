@@ -5,6 +5,8 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-10 mx-md-auto">
+        <%= link_to 'Add New Role', new_role_path, class: 'btn btn-primary',
+            data: {bs_toggle: 'modal', bs_target: "#createRoleModal", remote: true} %>
             <table class="table table-bordered">
                 <thead>
                     <tr>
@@ -21,4 +23,28 @@
             </table>
         </div>
     </div>
+</div>
+
+<div class="modal fade" id="createRoleModal" tabindex="-1" aria-labelledby="createRoleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="createRoleModalLabel">Create New Category</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+      <div id="createRoleForm"></div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="editRoleModal" tabindex="-1" aria-labelledby="editRoleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editRoleModalLabel">edit Category</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+      <div id="editRoleForm"></div>
+    </div>
+  </div>
 </div>
