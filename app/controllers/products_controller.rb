@@ -3,17 +3,22 @@ class ProductsController < ApplicationController
 
   def index
     @category = Category.all
-    if params[:query].present?
+    @category_in_id = params[:category_id]
+    if params[:category_id].nil?
+      @products = Product.all
+    elsif params[:query].present? && params[:category_id] == ""
       @products = Product.where("name LIKE :query", query: "%#{params[:query]}%")
-    else 
-      if !params[:category_id].nil? 
-        @products = Category.find_by(id: params[:category_id]).products;
-        if @products.length == 0
-          @products = Product.all
-        end
-      else
-        @products = Product.all
-      end
+    elsif params[:query].present? && params[:category_id] != ""
+      @products = Product.joins(:categories).where("products.name LIKE :query", query: "%#{params[:query]}%").where( categories: {id: params[:category_id].to_i})
+      # @products = Product.joins(:categories).where("products.name LIKE :query", query: "%#{params[:query]}%" , categories: {id: params[:category_id].to_i})
+    elsif !params[:query].present? && params[:category_id].nil?
+      @products = Product.all
+    elsif !params[:category_id].nil? && params[:query].nil?
+      @products = Category.find_by(id: params[:category_id]).products;
+    elsif params[:query] == "" &&  !params[:category_id].nil?
+      @products = Category.find_by(id: params[:category_id]).products;
+    else  
+      @products = Product.all
     end
   end
 
@@ -38,12 +43,17 @@ class ProductsController < ApplicationController
     end
   end
 
-  def destroy 
+  def destroy
     @deleted_product = current_user.products.find_by(id: params[:id]);
     @deleted_product.destroy 
     respond_to do |format|
       format.js
     end
+  end
+
+  def delete_product 
+    @product = Product.find_by(id: params[:id]);
+    @product.destroy
   end
 
   private 

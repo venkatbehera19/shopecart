@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     end
 
     def create 
-        @user = User.new(user_params);
+        @user = User.new(user_params)
         respond_to do |format|
             if @user.save
                 create_cart = @user.build_cart
@@ -49,7 +49,7 @@ class UsersController < ApplicationController
     end
 
     def destroy 
-        @user = User.find_by(id: params[:id]);
+        @user = User.find_by(id: params[:id])
         respond_to do |format|
             if @user.destroy 
                 format.js

@@ -1,5 +1,4 @@
 class User < ApplicationRecord
-    enum :role, { "customer": 1, "admin": 2, "seller": 3 }, prefix: true, scopes: false
     has_one  :cart, dependent:    :destroy
     has_many :cart_items, through: :cart
     has_many :cart_products, through: :cart_items, source: :product

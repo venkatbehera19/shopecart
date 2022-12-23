@@ -3,7 +3,8 @@
     <h1>Products</h1>
     <%= form_with(url: products_path, method: :get, data: { controller: "search-form", turbo_frame: "products"}) do |form| %>
         <div class="input-group rounded">
-            <%= form.text_field :query, data: { action: "input->search-form#search"}, class: "form-control rounded", placeholder: "Search" %>
+            <%= form.text_field :query, data: { action: "input->search-form#search" }, class: "form-control rounded", placeholder: "Search" %>
+            <%= form.hidden_field :category_id, value: @category_in_id %>
         </div>
     <% end %>
     <%= form_with(url: products_path, method: :get, data: { controller: 'filter-form', action: "change->filter-form#filter"} ) do |form| %>
