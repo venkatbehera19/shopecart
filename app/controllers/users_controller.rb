@@ -13,6 +13,7 @@ class UsersController < ApplicationController
         @user = User.new(user_params)
         respond_to do |format|
             if @user.save
+                UserMailer.with(user: @user).welcome_email.deliver_now
                 create_cart = @user.build_cart
                 if create_cart.save
                     format.html { redirect_to root_path, :flash => { :success => "User Created Successfully" } }
