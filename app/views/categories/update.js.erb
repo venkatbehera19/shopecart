@@ -1,6 +1,6 @@
 <% if @category.errors.any? %>
-    alert('Something Went Wrong.')
+  alert('Something Went Wrong.')
 <% else %>
-    $('#categoryRow_<%= @category.id %>').replaceWith("<%= escape_javascript render('category_row', category: @category) %>")
-    $('.btn-close').click()
+  $('#categoryRow_<%= @category.id %>').replaceWith("<%= escape_javascript render('category_row', category: @category) %>")
+  $('.btn-close').click()
 <% end %>

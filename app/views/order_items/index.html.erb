@@ -1,17 +1,16 @@
 <% provide(:title, 'Order Items') %>
-
 <h1 id="welcome">Order Items</h1>
 <div class="card-container">
-    <% @order_items.each do |order_item| %>
-        <div class="card">
-            <div class="card-header">
-               <%= order_item[:product_name] %>
-            </div>
-            <div class="card-body">
-                <p><%= order_item[:product_description] %> </p>
-                <p> Product Price - <%= order_item[:product_price] %> </p>
-                <p> Total Amount - <%= order_item[:total_amount] %> </p>
-            </div>
-        </div>
-    <% end %>
+  <% @order_items.each do |order_item| %>
+    <div class="card">
+      <div class="card-header">
+        <%= order_item[:product_name] %>
+      </div>
+      <div class="card-body">
+        <p><%= order_item[:product_description] %> </p>
+        <p> Product Price - <%= order_item[:product_price] %> </p>
+        <p> Total Amount - <%= order_item[:total_amount] %> </p>
+      </div>
+    </div>
+  <% end %>
 </div>

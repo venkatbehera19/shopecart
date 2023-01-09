@@ -1,25 +1,25 @@
 <% provide(:title, 'All Products') %>
 <div class="container d-flex align-items-center mt-3 mb-3 justify-content-between">
-    <h1>Products</h1>
-    <%= form_with(url: products_path, method: :get, data: { controller: "search-form", turbo_frame: "products"}) do |form| %>
-        <div class="input-group rounded">
-            <%= form.text_field :query, data: { action: "input->search-form#search" }, class: "form-control rounded", placeholder: "Search" %>
-            <%= form.hidden_field :category_id, value: @category_in_id %>
-        </div>
-    <% end %>
-    <%= form_with(url: products_path, method: :get, data: { controller: 'filter-form', action: "change->filter-form#filter"} ) do |form| %>
-        <div class="d-flex">
-            <%= form.select :category_id, options_for_select(@categories.collect {|cat| [cat.name, cat.id]}, :selected => params[:category_id]),{}, class: "form-select" %>
-        </div>
-    <% end %>
+  <h1>Products</h1>
+  <%= form_with(url: products_path, method: :get, data: { controller: "search-form", turbo_frame: "products"}) do |form| %>
+    <div class="input-group rounded">
+      <%= form.text_field :query, data: { action: "input->search-form#search" }, class: "form-control rounded", placeholder: "Search" %>
+      <%= form.hidden_field :category_id, value: @category_in_id %>
+    </div>
+  <% end %>
+  <%= form_with(url: products_path, method: :get, data: { controller: 'filter-form', action: "change->filter-form#filter"} ) do |form| %>
+    <div class="d-flex">
+      <%= form.select :category_id, options_for_select(@categories.collect {|cat| [cat.name, cat.id]}, :selected => params[:category_id]),{}, class: "form-select" %>
+    </div>
+  <% end %>
 </div>
 <div>
-    <div class="row">
-        <div class="col-2">
-            <%= render 'sidebar_menu' %>
-        </div>
-        <div class="col" id = "products_grid" >
-            <%= render "products", products: @products %>
-        </div>
+  <div class="row">
+    <div class="col-2">
+      <%= render 'sidebar_menu' %>
     </div>
+    <div class="col" id = "products_grid" >
+      <%= render "products", products: @products %>
+    </div>
+  </div>
 </div>

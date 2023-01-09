@@ -1,45 +1,43 @@
 <%= form_with(model: user, local:false) do |form| %>
-    <div class="modal-body">
-        <div>
-            <%= form.label :name%><br>
-            <%= form.text_field :name, class: 'form-control' %>
-            <% user.errors.full_messages_for(:name).each do |message| %>
-                <p class="error_message"><%= message %></p>
-            <% end %>
-        </div>
-        
-        <div>
-            <%= form.label :email%><br>
-            <%= form.email_field :email, class: 'form-control', :disabled => true %>
-        </div>
-
-        <div>
-            <%= form.label :phone%><br>
-            <%= form.text_field :phone, class: 'form-control' %>
-             <% user.errors.full_messages_for(:phone).each do |message| %>
-                 <p class="error_message"><%= message %></p>
-            <% end %>
-        </div>
-        
-        <div>
-            <%= form.label :password%><br>
-            <%= form.password_field :password, class: 'form-control' %>
-            <% user.errors.full_messages_for(:password).each do |message| %>
-                 <p class="error_message"><%= message %></p>
-            <% end %>
-        </div>
-        
-        <div>
-            <%= form.label :password_confirmation , "Confirm Password"%><br>
-            <%= form.password_field :password_confirmation, class: 'form-control' %>
-            <% user.errors.full_messages_for(:password_confirmation).each do |message| %>
-                 <p class="error_message"><%= message %></p>
-            <% end %>
-        </div>
-
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="close_btn">Close</button>
-            <%= form.submit class: "btn btn-primary", remote: true %>
-        </div>
+  <div class="modal-body">
+    <div>
+        <%= form.label :name%><br>
+        <%= form.text_field :name, class: 'form-control' %>
+        <% user.errors.full_messages_for(:name).each do |message| %>
+          <p class="error_message"><%= message %></p>
+        <% end %>
     </div>
+      
+    <div>
+        <%= form.label :email%><br>
+        <%= form.email_field :email, class: 'form-control', :disabled => true %>
+    </div>
+    <div>
+        <%= form.label :phone%><br>
+        <%= form.text_field :phone, class: 'form-control' %>
+        <% user.errors.full_messages_for(:phone).each do |message| %>
+          <p class="error_message"><%= message %></p>
+        <% end %>
+    </div>
+      
+    <div>
+        <%= form.label :password%><br>
+        <%= form.password_field :password, class: 'form-control' %>
+        <% user.errors.full_messages_for(:password).each do |message| %>
+          <p class="error_message"><%= message %></p>
+        <% end %>
+    </div>
+      
+    <div>
+        <%= form.label :password_confirmation , "Confirm Password"%><br>
+        <%= form.password_field :password_confirmation, class: 'form-control' %>
+        <% user.errors.full_messages_for(:password_confirmation).each do |message| %>
+          <p class="error_message"><%= message %></p>
+        <% end %>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="close_btn">Close</button>
+        <%= form.submit class: "btn btn-primary", remote: true %>
+    </div>
+  </div>
 <% end %>

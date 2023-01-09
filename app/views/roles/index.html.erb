@@ -3,26 +3,26 @@
 <h1 id="welcome">All Roles</h1>
 
 <div class="container">
-    <div class="row">
-        <div class="col-lg-10 mx-md-auto">
-        <%= link_to 'Add New Role', new_role_path, class: 'btn btn-primary',
-            data: {bs_toggle: 'modal', bs_target: "#createRoleModal", remote: true} %>
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Name</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody id="roleTable">
-                    <% @roles.each do |role| %>
-                        <%= render 'role_row', role: role %>
-                    <% end %>
-                </tbody>
-            </table>
-        </div>
+  <div class="row">
+    <div class="col-lg-10 mx-md-auto">
+      <%= link_to 'Add New Role', new_role_path, class: 'btn btn-primary',
+          data: {bs_toggle: 'modal', bs_target: "#createRoleModal", remote: true} %>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Name</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="roleTable">
+            <% @roles.each do |role| %>
+              <%= render 'role_row', role: role %>
+            <% end %>
+          </tbody>
+        </table>
     </div>
+  </div>
 </div>
 
 <div class="modal fade" id="createRoleModal" tabindex="-1" aria-labelledby="createRoleModalLabel" aria-hidden="true">

@@ -1,2 +1,7 @@
-$('#item<%= @cart_item.id %>').replaceWith("<%= escape_javascript render('items', all_cart_item: @cart_item) %>")
-$('#total_money').replaceWith("<%= escape_javascript render('total', cart_items: @cart_items) %>")
+<% if log_in? %>
+  $('#item<%= @cart.id %>').replaceWith("<%= escape_javascript render('items', all_cart_item: @cart) %>")
+  $('#total_money').replaceWith("<%= escape_javascript render('total', cart_items: @cart_items) %>")
+<% else %>
+  $('#item<%= @cart['id'] %>').replaceWith("<%= escape_javascript render('items', all_cart_item: @cart) %>")
+  $('#total_money').replaceWith("<%= escape_javascript render('total', cart_items: @cart_items) %>")
+<% end %>

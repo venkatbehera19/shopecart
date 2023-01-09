@@ -1,11 +1,11 @@
 <%= form_with(model: role, local: false) do |form| %>
-    <div class="modal-body">
-        <div class="form-group">
-            <%= form.label :name %>
-            <%= form.text_field :name, class: "form-control" %>
-        </div>
+  <div class="modal-body">
+    <div class="form-group">
+      <%= form.label :name %>
+      <%= form.text_field :name, class: "form-control" %>
     </div>
-    <div class="modal-footer">
-        <%= form.submit class: "btn btn-primary btn-lg" %>
-    </div>
+  </div>
+  <div class="modal-footer">
+    <%= form.submit class: "btn btn-primary btn-lg" %>
+  </div>
 <% end %>

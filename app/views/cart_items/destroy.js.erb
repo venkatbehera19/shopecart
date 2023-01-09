@@ -1,4 +1,11 @@
-$('#item<%= @check_item.id %>').remove()
-$('#total_money').replaceWith("<%= escape_javascript render('total', cart_items: @cart_items) %>")
-$('#cart').replaceWith("<%= escape_javascript render('/layouts/cart', count: total_cart_items) %>")
-$('#checkout_btn').replaceWith("<%= escape_javascript render('checkout_btn', total_cart_items: total_cart_items) %>")
+<% if log_in? %>
+  $('#item<%= @check_item.id %>').remove()
+  $('#total_money').replaceWith("<%= escape_javascript render('total', cart_items: @cart_items) %>")
+  $('#cart').replaceWith("<%= escape_javascript render('/layouts/cart', count: total_cart_items) %>")
+  $('#checkout_btn').replaceWith("<%= escape_javascript render('checkout_btn', total_cart_items: total_cart_items) %>")
+<% else %>
+  $('#item<%= @check_item['id'] %>').remove()
+  $('#total_money').replaceWith("<%= escape_javascript render('total', cart_items: @cart_items) %>")
+  $('#cart').replaceWith("<%= escape_javascript render('/layouts/cart', count: total_cart_items) %>")
+  $('#checkout_btn').replaceWith("<%= escape_javascript render('checkout_btn', total_cart_items: total_cart_items) %>")
+<% end %>

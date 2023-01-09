@@ -10,7 +10,6 @@ class ProductsController < ApplicationController
       @products = Product.where("name LIKE :query", query: "%#{params[:query]}%")
     elsif params[:query].present? && params[:category_id] != ""
       @products = Product.joins(:categories).where("products.name LIKE :query", query: "%#{params[:query]}%").where( categories: {id: params[:category_id].to_i})
-      # @products = Product.joins(:categories).where("products.name LIKE :query", query: "%#{params[:query]}%" , categories: {id: params[:category_id].to_i})
     elsif !params[:query].present? && params[:category_id].nil?
       @products = Product.all
     elsif !params[:category_id].nil? && params[:query].nil?

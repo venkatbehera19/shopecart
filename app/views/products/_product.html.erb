@@ -6,9 +6,11 @@
   </div>
   <div class="card-footer text-muted">
       <%= button_to "Add To Cart", cart_items_path, 
-                  params: {  product: product, 
+                  params: {  product: product,
+                             product_id: product, 
                              name: product.name, 
-                             description: product.description 
+                             description: product.description,
+                             price: product.price
                           } %>
       <% if is_admin? %>
         <%= button_to "Delete", delete_product_path, method: :delete,params: { id: product.id }, class: 'btn btn-danger' %>

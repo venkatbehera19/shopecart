@@ -1,3 +1,8 @@
 <h2 id="total_money" class="text-center"> 
-    All Total <%= cart_total_money(cart_items) %> 
+  All Total 
+  <% if log_in? %>
+    <%= cart_total_money(cart_items) %> 
+  <% else %>
+    <%= session_cart(cart_items) %> 
+  <% end %>
 </h2>

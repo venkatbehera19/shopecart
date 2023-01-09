@@ -2,29 +2,30 @@ class OrdersController < ApplicationController
   before_action :logged_in_user
   def index 
     if is_admin?
-        @orders = Order.all 
+      @orders = Order.all 
     else  
-        @orders = current_user.orders
+      @orders = current_user.orders
     end
   end
 
   def create 
-    cart_items_for_user = current_user.cart_items
+    # cart_items_for_user = current_user.cart_items
     invoice_number = rand(1000);
-    new_record = current_user.orders.create(total_amount:calculate_total, invoice_number:invoice_number )
+    new_record = current_user.orders.create(total_amount: calculate_total, invoice_number: invoice_number )
     if new_record 
       calculate_total_amount_object.each do |cart_item| 
-          new_record.order_items.create( product_id: cart_item["product_id"],
-                                         product_name: cart_item["product_name"],
-                                         product_description: cart_item["product_description"],
-                                         product_price: cart_item["product_price"],
-                                         total_amount: cart_item["product_price"] * cart_item["quantity"]
-                                        )
+        new_record.order_items.create( product_id: cart_item["product_id"],
+                                       product_name: cart_item["product_name"],
+                                       product_description: cart_item["product_description"],
+                                       product_price: cart_item["product_price"],
+                                       total_amount: cart_item["product_price"] * cart_item["quantity"]
+                                      )
       end
-      OrderMailer.with(user: current_user, total_amount: calculate_total).ordered_details.deliver_now
+      # binding.b
+      OrderMailer.with(user: current_user, total_amount: calculate_total, order_details: new_record ).ordered_details.deliver_now
       redirect_to orders_path
       current_user.cart_items.each do |cart_item|
-          cart_item.destroy
+        cart_item.destroy
       end
     end
   end
@@ -51,14 +52,16 @@ class OrdersController < ApplicationController
     def calculate_total 
       total_money = 0;
       calculate_total_amount_object.each do |all_cart_item|
-          total_money += all_cart_item["product_price"] * all_cart_item["quantity"]
+        total_money += all_cart_item["product_price"] * all_cart_item["quantity"]
       end
       total_money
     end
+
     def logged_in_user 
       unless log_in?
-          flash[:danger] = "please log in"
-          redirect_to login_url
+        flash[:danger] = "please log in"
+        redirect_to login_url
       end
     end
+    
 end

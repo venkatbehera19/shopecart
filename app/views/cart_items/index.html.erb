@@ -1,78 +1,69 @@
 <% provide(:title, 'Cart Item') %>
 <h1 id="welcome">Cart Items</h1>
 <% if log_in? %>
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <% if @cart_items.length == 0 %>
-                    <h2 id="welcome">Cart is Empty</h2>
-                <% else %>
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Price</th>
-                                <th>Quantity</th>
-                                <th colspan="3">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <% @cart_items.each do |all_cart_item| %>
-                                <%= render 'cart_items/items', all_cart_item: all_cart_item %>
-                            <% end %>
-                        </tbody>
-                    </table>
-                <%end %>
-            </div>
-            <div class="col">
-                <% if @cart_items.length != 0 %>
-                    <div class="mt-2">
-                        <%= render 'total', cart_items: @cart_items %>
-                        <%= render 'checkout_btn', orders_path: orders_path, total_cart_items: total_cart_items %>
-                    </div>
-                <%end %>
-            </div>
-        </div>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <% if @cart_items.length == 0 %>
+          <h2 id="welcome">Cart is Empty</h2>
+        <% else %>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th colspan="3">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @cart_items.each do |all_cart_item| %>
+                <%= render 'cart_items/items', all_cart_item: all_cart_item %>
+              <% end %>
+            </tbody>
+          </table>
+        <%end %>
+      </div>
+      <div class="col">
+        <% if @cart_items.length != 0 %>
+          <div class="mt-2">
+            <%= render 'total', cart_items: @cart_items %>
+            <%= render 'checkout_btn', orders_path: orders_path, total_cart_items: total_cart_items %>
+          </div>
+        <%end %>
+      </div>
     </div>
+  </div>
 <% else %>
-<% if cart_sessions %>
+  <% if cart_sessions %>
     <div class="container">
-        <div class="row">
-            <div class="col"> 
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Price</th>
-                            <th>Quantity</th>
-                        </tr>
-                    </thead>
-                        <% cart_sessions.each do |item| %>
-                            <tr>
-                                <td> <%= find_product(item['id']).name %> </td>
-                                <td> <%= find_product(item['id']).price %> </td>
-                                <td> <%= item['quantity'] %> </td>
-                            </tr>
-                        <% end %>
-                    <tbody>
-                    </tbody>
-                </table>
-            </div> 
-             <div class="col">
-                <% if cart_sessions.length != 0 %>
-                    <div class="mt-2">
-                        <%= render 'session_total', cart_items: cart_sessions %>
-                        <%= render 'checkout_btn', orders_path: orders_path, total_cart_items: total_cart_items %>
-                    </div>
-                <%end %>
-            </div>
+      <div class="row">
+        <div class="col"> 
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th colspan="3">Action</th>
+              </tr>
+            </thead>
+                <% cart_sessions.each do |item| %>
+                  <%= render 'cart_items/items', all_cart_item: item %>
+                <% end %>
+            <tbody>
+            </tbody>
+          </table>
         </div> 
+        <div class="col">
+          <% if cart_sessions.length != 0 %>
+            <div class="mt-2">
+              <%= render 'session_total', cart_items: cart_sessions %>
+              <%= render 'checkout_btn', orders_path: orders_path, total_cart_items: total_cart_items %>
+            </div>
+          <%end %>
+        </div>
+      </div> 
     </div>
+  <% end %>
 <% end %>
-<% end %>
-
-
-
-
-
-

@@ -1,8 +1,8 @@
 <nav class="h-100 flex-column align-items-stretch border-end">
-    <nav class="nav nav-pills flex-column">
-        <%= link_to "All_Category", products_path, class: "nav-link ms-3 my-1" %>
-        <% @categories.each do |category| %>
-            <%= link_to category.name ,products_path(:category_id => category.id ), class: "nav-link ms-3 my-1" %> </br>
-        <% end %>
-    </nav>
+  <nav class="nav nav-pills flex-column">
+    <%= link_to "All_Category", products_path, class: "nav-link ms-3 my-1" %>
+    <% @categories.each do |category| %>
+      <%= link_to category.name ,products_path(:category_id => category.id ), class: "nav-link ms-3 my-1" %> </br>
+    <% end %>
+  </nav>
 </nav>

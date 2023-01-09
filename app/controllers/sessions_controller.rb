@@ -15,9 +15,10 @@ class SessionsController < ApplicationController
           log_in @user
           if is_cart_sessions?
             user_cart = @user.cart.cart_items
+            binding.b
             cart_sessions.each do |item|
               if is_session_cart_present_in_user_cart(user_cart, item) == nil 
-                @user.cart.cart_items.create(product_id: item["id"], quantity:1)
+                @user.cart.cart_items.create(product_id: item["id"], quantity:item["quantity"].to_i)
               end
             end
           end

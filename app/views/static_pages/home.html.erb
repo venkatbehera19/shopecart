@@ -4,45 +4,47 @@
     data-bs-ride="carousel"
     id = "carouselitem"
     style="margin-top:10px; margin-bottom:10px">
-    <div class="carousel-inner">
-        <div class="carousel-item active">
-            <%= image_tag "carousel1.jpg", class: "d-block w-100" %>
-        </div>
-        <div class="carousel-item">
-            <%= image_tag "carousel2.jpg", class: "d-block w-100" %>
-        </div>
-        <div class="carousel-item">
-            <%= image_tag "carousel3.jpg", class: "d-block w-100" %>
-        </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <%= image_tag "carousel1.jpg", class: "d-block w-100" %>
     </div>
-     <button class="carousel-control-prev" type="button" data-bs-target="#carouselitem" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselitem" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-    </button>
+    <div class="carousel-item">
+      <%= image_tag "carousel2.jpg", class: "d-block w-100" %>
+    </div>
+    <div class="carousel-item">
+      <%= image_tag "carousel3.jpg", class: "d-block w-100" %>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselitem" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselitem" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
 </div>
 
 <div class="card-container">
-    <% @products.each do |product| %>
-        <div class="card" style="width:300px">
-            <div class="card-body">
-                <h1><%= product.name %></h1>
-                <p class="price"><%= product.price %> Rs</p>
-                <p><%= product.description %></p>
-            </div>
-            <div class="card-footer text-muted">
-                    <%= button_to "Add To Cart", cart_items_path, 
-                        params: {  product: product, 
-                                name: product.name, 
-                                description: product.description 
-                                } %> 
-            </div>
-        </div>
-    <% end %>
+  <% @products.each do |product| %>
+    <div class="card" style="width:300px">
+      <div class="card-body">
+        <h1><%= product.name %></h1>
+        <p class="price"><%= product.price %> Rs</p>
+        <p><%= product.description %></p>
+      </div>
+      <div class="card-footer text-muted">
+        <%= button_to "Add To Cart", cart_items_path, 
+            params: {   product: product,
+                        product_id: product, 
+                        name: product.name, 
+                        description: product.description ,
+                        price: product.price
+                    } %> 
+      </div>
+    </div>
+  <% end %>
 </div>
 <div class="pagination">
-    <%= will_paginate @products, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+  <%= will_paginate @products, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
 </div>

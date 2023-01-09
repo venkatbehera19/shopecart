@@ -1,20 +1,20 @@
 <%= form_with(model: @product, local:false) do |form| %>
-    <div class="modal_body">
-        <div>
-            <%= form.label :name %>
-            <%= form.text_field :name, class: 'form-control' %>
-        </div>
-        <div>
-            <%= form.label :description %>
-            <%= form.text_field :description, class: 'form-control' %>
-        </div>
-        <div>
-            <%= form.label :price %>
-            <%= form.text_field :price, class: 'form-control' %>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="close_btn">Close</button>
-            <%= form.submit class: "btn btn-primary", remote: true %>
-        </div>
+  <div class="modal_body">
+    <div>
+      <%= form.label :name %>
+      <%= form.text_field :name, class: 'form-control' %>
     </div>
+    <div>
+      <%= form.label :description %>
+      <%= form.text_field :description, class: 'form-control' %>
+    </div>
+    <div>
+      <%= form.label :price %>
+      <%= form.text_field :price, class: 'form-control' %>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="close_btn">Close</button>
+      <%= form.submit class: "btn btn-primary", remote: true %>
+    </div>
+  </div>
 <% end %>

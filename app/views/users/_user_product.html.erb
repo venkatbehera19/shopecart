@@ -1,7 +1,7 @@
 <tr id="productrow_<%= product.id %>">
-    <td><%= product[:name] %></td>
-    <td><%= product[:price] %></td>
-    <td><%= product[:description] %></td>
-    <td><%= all_category_name(product.categories) %>
-    <td><%= button_to "Delete", product, method: :delete, remote: true %></td>
+  <td><%= product[:name] %></td>
+  <td><%= product[:price] %></td>
+  <td><%= product[:description] %></td>
+  <td><%= all_category_name(product.categories) %>
+  <td><%= button_to "Delete", product, method: :delete, remote: true %></td>
 </tr>

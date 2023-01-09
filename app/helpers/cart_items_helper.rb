@@ -6,15 +6,11 @@ module CartItemsHelper
         end
         total_money
     end
-
-    def find_product(id)
-        Product.find_by(id: id);
-    end
     
-    def session_cart (cart)
+    def session_cart(cart)
         total_money = 0
         cart.each do |all_cart_item|
-            total_money += find_product(all_cart_item['id']).price * all_cart_item["quantity"]
+            total_money += all_cart_item['price'].to_i * all_cart_item["quantity"].to_i
         end
         total_money
     end

@@ -1,6 +1,6 @@
 <% if @category.errors.any? %>
-    alert('something went wrong')
+  alert('something went wrong')
 <% else %>
-    $('#categoryTable').append("<%= escape_javascript render('category_row', category: @category) %>")
-    $('.btn-close').click()
+  $('#categoryTable').append("<%= escape_javascript render('category_row', category: @category) %>")
+  $('.btn-close').click()
 <% end %>
