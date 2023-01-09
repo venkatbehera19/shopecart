@@ -11,13 +11,14 @@ class OrderMailer < ApplicationMailer
 
   private 
     def generate_pdf_content(order_details)
-      pdf = Prawn::Document.new 
-      pdf.text "Hello World"
-      pdf.text "#{order_details.total_amount}"
-      # table_data = [["this is the first row"], ["second row"]]
-      # pdf.table(table_data, :width => 500)
+      doc = PrawnRails::Document.new(page_layout: :landscape)
+      table_data = Array.new 
+      table_data << ["Name", "Product Price", "Total Amount"]
+      doc.table(table_data, :width => 500, :cell_style => { inline_format: true })
+      doc.table order_details.order_items.collect{|p| [p.product_name, p.product_price,  p.total_amount ]}, width: 500, cell_style: { inline_format: true }
+      doc.text "All Total - #{order_details.total_amount}"
       Tempfile.create do |f|
-        pdf.render_file f 
+        doc.render_file f 
         f.flush 
         File.read(f)
       end
