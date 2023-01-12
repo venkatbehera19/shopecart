@@ -26,16 +26,9 @@ class CartItemsController < ApplicationController
         end
       end
     else
-      new_product = { 
-        :id => params[:product_id], 
-        :quantity => 1, 
-        :name => params[:name], 
-        :description => params[:description], 
-        :price => params[:price]
-       }
       respond_to do |format| 
         format.turbo_stream do
-          add_cart_to_sessions(new_product);
+          add_cart_to_sessions(add_to_cart_params);
           render turbo_stream: [
               turbo_stream.update('cart', partial: '/layouts/cart', locals: { count: cart_sessions.length})
           ]
@@ -47,7 +40,7 @@ class CartItemsController < ApplicationController
   def update
     if log_in?
       @cart = CartItem.find_by(id: params[:id]);
-      @cart.update_attribute(:quantity, params[:quantity]);
+      @cart.update_attribute(:quantity, params[:quantity])
       @cart_items = current_user.cart_items.order(:created_at)
       respond_to do |format|
         if @cart
@@ -55,12 +48,7 @@ class CartItemsController < ApplicationController
         end
       end
     else
-      updated_product_details = { 
-        :id => params[:product_id], 
-        :quantity => params[:quantity], 
-        :price => params[:price] 
-      }
-      @cart_items = update_session_element(updated_product_details);
+      @cart_items = update_session_element(update_cart_params)
       @cart = get_session_element(params[:id])
       respond_to do |format|
         if @cart
@@ -91,6 +79,12 @@ class CartItemsController < ApplicationController
 
   private 
     def add_to_cart_params 
-      params.permit(:product, :product_id, :name, :description, :price)
+      params
+        .permit(:id, :name, :description, :price)
+        .merge(quantity: 1)
+    end
+
+    def update_cart_params 
+      params.permit(:id, :quantity, :price)
     end
 end
