@@ -3,7 +3,6 @@ class OrderMailer < ApplicationMailer
 
   def ordered_details 
     current_user = params[:user]
-    @total_amount = params[:total_amount]
     @order_details = params[:order_details]
     attachments['order.pdf'] = generate_pdf_content(@order_details)
     mail(to: current_user.email, subject: 'Order placed')
@@ -23,5 +22,4 @@ class OrderMailer < ApplicationMailer
         File.read(f)
       end
     end
-
 end

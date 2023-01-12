@@ -13,9 +13,11 @@ class ProductsController < ApplicationController
     elsif !params[:query].present? && params[:category_id].nil?
       @products = Product.all
     elsif !params[:category_id].nil? && params[:query].nil?
-      @products = Category.find_by(id: params[:category_id]).products;
+      @products = Category.find_by(id: params[:category_id]).products
+    elsif params[:query] == "" &&  params[:category_id] == ""
+      @products = Product.all
     elsif params[:query] == "" &&  !params[:category_id].nil?
-      @products = Category.find_by(id: params[:category_id]).products;
+      @products = Category.find_by(id: params[:category_id]).products
     else  
       @products = Product.all
     end

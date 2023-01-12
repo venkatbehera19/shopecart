@@ -72,7 +72,6 @@ module SessionsHelper
 
   def add_cart_to_sessions(data) 
     if is_cart_sessions?
-      test = is_item_present_in_sessions(data);
       if !is_item_present_in_sessions(data)
         session[:cart] << data;
       end

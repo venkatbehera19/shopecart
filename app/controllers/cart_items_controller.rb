@@ -1,5 +1,4 @@
 class CartItemsController < ApplicationController
-  # before_action :log_in? 
   def index 
     if log_in?
       @cart_items = current_user.cart_items.order(:created_at)
@@ -89,5 +88,9 @@ class CartItemsController < ApplicationController
       end
     end
   end
-  
+
+  private 
+    def add_to_cart_params 
+      params.permit(:product, :product_id, :name, :description, :price)
+    end
 end
