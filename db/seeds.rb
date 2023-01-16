@@ -24,3 +24,11 @@
 # ['customer','admin','seller'].each do |i| 
 #     Role.create(name: i);
 # end
+
+User.create(
+  name: 'Admin', 
+  email: 'admin@admin.com', 
+  phone: '8658422355', 
+  role_id: 2, 
+  password: 'Password', 
+)

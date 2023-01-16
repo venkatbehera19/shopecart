@@ -9,7 +9,7 @@
           Order Id - <%= order[:id] %>
         </div>
         <div class="card-body">
-          <p> Invoice Number - <%= order[:invoice_number] %> </p>
+          <p> Invoice Number - <%= order[:invoice_id] %> </p>
           <p> Total Amount - <%= order[:total_amount] %> </p>
           <%= link_to "View Details", order_order_items_path(order[:id]), 
               class: "btn btn-primary btn-sm" %>

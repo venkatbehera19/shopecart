@@ -28,6 +28,7 @@ class ProductsController < ApplicationController
   end
 
   def create
+    # authorize current_user
     @product = current_user.products.create(name: product_params[:name], description: product_params[:description], price: product_params[:price]);
     product_params[:categories_ids].each do |category_id|
       if category_id != ""

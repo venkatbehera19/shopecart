@@ -76,3 +76,5 @@ group :test do
 end
 
 gem 'prawn-rails'
+
+gem "pundit", "~> 2.3"

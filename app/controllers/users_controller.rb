@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_action :logged_in_user, except: [:new, :create]
 
   def index 
+    # authorize current_user
     @users = User.all
   end
 
@@ -38,6 +39,7 @@ class UsersController < ApplicationController
 
     def update 
       @user = User.find(params[:id])
+      # authorize @user
       respond_to do |format|
         if @user.update(user_params)
           format.html { redirect_to user_url(@user), :flash => { :success => "Profile Updated Successfully."}}
@@ -49,7 +51,8 @@ class UsersController < ApplicationController
       end
     end
 
-    def destroy 
+    def destroy
+      # authorize current_user
       @user = User.find_by(id: params[:id])
       respond_to do |format|
         if @user.destroy 

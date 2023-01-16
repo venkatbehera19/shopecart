@@ -10,9 +10,9 @@ class OrdersController < ApplicationController
   end
 
   def create 
-    invoice_number = rand(1000);
+    invoice = Invoice.create(user_id: current_user.id, invoice_date: Time.now)
     cart_items = current_user.cart_items
-    new_record = current_user.orders.create(total_amount: cart_total_money(cart_items), invoice_number: invoice_number)
+    new_record = current_user.orders.create(total_amount: cart_total_money(cart_items), invoice_id: invoice.id)
     if new_record 
       cart_items.each do |cart_item|
         new_record.order_items.create(
