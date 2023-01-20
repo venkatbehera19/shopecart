@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
   before_action :logged_in_user
   include CartItemsHelper
+  
   def index 
     if is_admin?
       @orders = Order.all 
@@ -20,11 +21,12 @@ class OrdersController < ApplicationController
           product_name: cart_item.product.name,
           product_description: cart_item.product.description,
           product_price: cart_item.product.price,
+          quantity: cart_item.quantity,
           total_amount: cart_item.quantity * cart_item.product.price
         )
       end
       OrderMailer.with(user: current_user, order_details: new_record).ordered_details.deliver_now
-      redirect_to orders_path
+      redirect_to checkout_path(:order_details => new_record)
       current_user.cart_items.each do |cart_item|
         cart_item.destroy
       end

@@ -16,6 +16,11 @@
         </div>
         <div class="card-footer text-muted">
           <p><%= time_ago_in_words(order[:created_at]) %> ago </p>
+          <% if order[:paid] %>
+            <p style="background-color:green;color:black"> Payment Sucessfully </p>
+          <% else %>
+            <p style="background-color:red;color:black"> Payment Cancel </p>
+          <% end %>
         </div>
       </div>
     <% end %>
